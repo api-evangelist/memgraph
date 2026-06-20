@@ -1,0 +1,45 @@
+{
+  "info": {
+    "_postman_id": "a1d2e3f4-5678-49ab-bcde-memgraph000001",
+    "name": "Memgraph",
+    "description": "Memgraph's primary interface is Cypher over the Bolt wire protocol (bolt://host:7687) via graph drivers - it is NOT a REST API and cannot be exercised over HTTP. This collection covers only Memgraph's single genuine HTTP surface: the Enterprise metrics endpoint (default 0.0.0.0:9091).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9091"
+    }
+  ],
+  "item": [
+    {
+      "name": "Monitoring",
+      "description": "Operational HTTP surface. The Cypher query interface is Bolt-based (port 7687) and not represented here.",
+      "item": [
+        {
+          "name": "Scrape Memgraph metrics (Enterprise)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/metrics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metrics"
+              ]
+            },
+            "description": "Returns Memgraph system, query, transaction, and memory metrics in OpenMetrics/Prometheus exposition format. Enterprise-only; the metrics server must be enabled via --metrics-address/--metrics-port."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

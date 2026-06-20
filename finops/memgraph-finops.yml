@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Memgraph
+providerId: memgraph
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Graph Database
+- In-Memory
+- Cypher
+- Bolt
+- Real-Time
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Memgraph spend. Memgraph is not a usage-metered API; the free
+  Community Edition carries no license cost, and the dominant cost driver for self
+  hosted deployments is infrastructure - chiefly memory (since the working graph is
+  held in RAM), CPU, and storage for snapshots/WAL. The Enterprise Edition adds an
+  annual, sales-negotiated license (reported from ~$25,000/year scaling by memory),
+  and Memgraph Cloud (Beta) adds managed-hosting charges. Because license and cloud
+  pricing is negotiated and not fully published, this artifact is not reconciled.
+notes: >-
+  Enterprise/Cloud pricing is sales-led; verify against the Memgraph pricing page and
+  your agreement during reconciliation. Self-hosted FinOps should track underlying
+  cloud/VM infrastructure cost (memory, CPU, storage) as the primary meter.
+sources:
+- https://memgraph.com/pricing
+- https://memgraph.com/docs
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Memgraph
+serviceCategory: Databases
+billingModel:
+  pricingCategory: Subscription / Self-Hosted Infrastructure
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+meters:
+- name: enterprise_license
+  description: Annual Memgraph Enterprise license, scaling by provisioned memory capacity (sales-negotiated).
+  unit: license-year
+  aggregation: sum
+  dimensions:
+  - account
+  - memory_tier
+- name: memory_capacity
+  description: RAM provisioned to hold the in-memory graph - the primary self-hosted infrastructure cost driver.
+  unit: gigabytes
+  aggregation: max
+  dimensions:
+  - deployment
+  - instance
+- name: compute_hours
+  description: CPU/host runtime hours for self-hosted Memgraph instances and replicas.
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - deployment
+  - instance
+- name: storage_capacity
+  description: Disk used for snapshots and write-ahead logs (durability) on self-hosted deployments.
+  unit: gigabytes
+  aggregation: max
+  dimensions:
+  - deployment
+- name: cloud_managed
+  description: Managed Memgraph Cloud (Beta) hosting charges by capacity (where applicable).
+  unit: instance-hours
+  aggregation: sum
+  dimensions:
+  - account
+  - tier
+principles:
+- name: Visibility
+  description: Track infrastructure cost (memory, CPU, storage) per Memgraph deployment; attribute the Enterprise license to the owning team.
+- name: Allocation
+  description: Tag instances and replicas per workload/environment; map to internal cost centers.
+- name: Optimization
+  description: Right-size memory to the actual graph footprint; consolidate workloads; use Community Edition where Enterprise features are not required.
+- name: Accountability
+  description: Assign owners per deployment; review memory and host spend against budget on the cloud/VM bill.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

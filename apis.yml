@@ -1,0 +1,124 @@
+aid: memgraph
+url: https://raw.githubusercontent.com/api-evangelist/memgraph/refs/heads/main/apis.yml
+name: Memgraph
+kind: company
+description: Memgraph is an open-source, high-performance in-memory graph database built
+  in C++ for real-time graph analytics, GraphRAG, and agentic AI. Its primary interface
+  is Cypher executed over the Bolt wire protocol (TCP port 7687) via standard graph
+  drivers - it is not a REST API. Memgraph also ships MAGE graph algorithms, the
+  GQLAlchemy Python OGM, the Memgraph Lab visual interface, a WebSocket log-monitoring
+  channel, and an Enterprise Prometheus-style metrics HTTP endpoint.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Graph Database
+- In-Memory
+- Cypher
+- Bolt
+- Real-Time
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: memgraph:memgraph-bolt-cypher-query-interface
+  name: Memgraph Bolt/Cypher Query Interface
+  tags:
+  - Cypher
+  - Bolt
+  - Query
+  - Graph
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://memgraph.com/docs/querying
+  baseURL: bolt://localhost:7687
+  properties:
+  - url: https://memgraph.com/docs/client-libraries
+    type: Documentation
+  - url: https://memgraph.com/docs/querying
+    type: APIReference
+  - url: openapi/memgraph-openapi.yml
+    type: OpenAPI
+  - url: https://github.com/memgraph/memgraph
+    type: GitHub
+  description: The primary programmatic interface to Memgraph. Clients send openCypher
+    queries over the binary Bolt protocol on TCP port 7687 (bolt:// or bolt+s://) using
+    official Neo4j-compatible drivers for Python, JavaScript, Java, Go, Rust, C#, and
+    PHP. This is a stateful wire protocol, not a REST/HTTP API; there are no HTTP query
+    endpoints.
+- aid: memgraph:memgraph-mage-algorithms
+  name: Memgraph MAGE Algorithms
+  tags:
+  - MAGE
+  - Algorithms
+  - Query Modules
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://memgraph.com/docs/advanced-algorithms
+  baseURL: bolt://localhost:7687
+  properties:
+  - url: https://memgraph.com/docs/advanced-algorithms
+    type: Documentation
+  - url: https://memgraph.com/docs/advanced-algorithms/available-algorithms
+    type: APIReference
+  - url: https://github.com/memgraph/mage
+    type: GitHub
+  description: MAGE (Memgraph Advanced Graph Extensions) is an open-source library of
+    graph algorithms and query modules - traditional, dynamic, and ML-driven - invoked
+    as Cypher procedures (CALL ...) over the same Bolt interface. Not a standalone
+    HTTP API.
+- aid: memgraph:memgraph-monitoring-metrics
+  name: Memgraph Monitoring and Metrics
+  tags:
+  - Monitoring
+  - Metrics
+  - Prometheus
+  - WebSocket
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://memgraph.com/docs/database-management/monitoring
+  baseURL: http://localhost:9091
+  properties:
+  - url: https://memgraph.com/docs/database-management/monitoring
+    type: Documentation
+  - url: https://memgraph.com/docs/configuration/server-stats
+    type: APIReference
+  - url: openapi/memgraph-openapi.yml
+    type: OpenAPI
+  - url: https://github.com/memgraph/memgraph
+    type: GitHub
+  description: Two operational surfaces. A WebSocket log channel (ws:// or wss:// on
+    default 0.0.0.0:7444) streams real-time log messages to connected clients. An
+    Enterprise-only metrics HTTP endpoint (default 0.0.0.0:9091) exposes system,
+    query, transaction, and memory metrics in OpenMetrics/Prometheus format via GET.
+- aid: memgraph:memgraph-lab
+  name: Memgraph Lab
+  tags:
+  - Lab
+  - Visualization
+  - UI
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://memgraph.com/docs/data-visualization
+  baseURL: bolt://localhost:7687
+  properties:
+  - url: https://memgraph.com/docs/data-visualization
+    type: Documentation
+  - url: https://github.com/memgraph/lab
+    type: GitHub
+  description: Memgraph Lab is a lightweight visual interface for writing Cypher queries,
+    visualizing graph results, importing data, and inspecting query modules. The Lab
+    application itself connects to Memgraph over the Bolt protocol on port 7687; it is
+    a client UI, not a public REST API.
+common:
+- type: GitHubOrganization
+  url: https://github.com/memgraph
+- type: LinkedIn
+  url: https://www.linkedin.com/company/memgraph
+- type: Website
+  url: https://memgraph.com
+- type: Documentation
+  url: https://memgraph.com/docs
+- type: Plans
+  url: plans/memgraph-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/memgraph-rate-limits.yml
+- type: FinOps
+  url: finops/memgraph-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

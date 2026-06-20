@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Memgraph
+providerId: memgraph
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Graph Database
+- In-Memory
+- Cypher
+- Bolt
+- Real-Time
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Memgraph is a self-hosted database accessed over the Bolt wire protocol rather than
+  a metered public REST API, so it does not impose vendor-side RPM/TPM request quotas.
+  Throughput and concurrency are bounded by the operator's own configuration and
+  hardware - the Bolt session/connection limits, the query execution thread pool, the
+  available memory for the in-memory graph, and any storage/transaction settings.
+  There are no published per-account rate limits; effective limits are determined by
+  deployment sizing. Specific configuration values are not reconciled in this artifact.
+notes: >-
+  On reconciliation, capture the relevant Memgraph configuration flags that govern
+  concurrency and resource limits (for example Bolt session count, query execution
+  thread pools, memory limits, and query timeouts) from the configuration reference;
+  these are operator-controlled, not provider-enforced quotas.
+sources:
+- https://memgraph.com/docs/database-management/configuration
+- https://memgraph.com/docs/querying
+- https://memgraph.com/docs/database-management/monitoring
+responseCodes:
+  throttled: not applicable (Bolt protocol; no HTTP 429 quota on the query interface)
+limits:
+- name: Bolt Connections / Sessions
+  scope: deployment
+  metric: connections
+  limit: operator-configured
+  notes: Concurrent Bolt sessions on port 7687 are bounded by server configuration and host resources, not a provider quota.
+- name: Query Concurrency
+  scope: deployment
+  metric: queries
+  limit: operator-configured
+  notes: Bounded by the query execution thread pool and available CPU/memory; tune via configuration flags.
+- name: Memory Capacity
+  scope: deployment
+  metric: memory
+  limit: operator-configured
+  notes: As an in-memory database, the working graph must fit within configured/available RAM; query memory limits are configurable.
+- name: Metrics HTTP Endpoint
+  scope: deployment
+  metric: requests
+  limit: operator-configured
+  notes: Enterprise metrics endpoint (default 0.0.0.0:9091) is intended for scrape by Prometheus; no published rate cap.
+policies:
+- name: Operator-Controlled Limits
+  description: All effective limits are determined by the self-hosted deployment's configuration and hardware, not by Memgraph as a vendor.
+- name: Capacity Planning
+  description: Size memory and CPU to the graph and concurrent workload; use HA/replication for scale-out read throughput.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

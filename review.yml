@@ -1,0 +1,89 @@
+aid: memgraph
+name: Memgraph
+review:
+  question: Does Memgraph expose a documented public REST or WebSocket API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Memgraph's primary interface is Cypher over the Bolt binary wire protocol
+    (TCP port 7687), which is neither REST nor an event-streaming HTTP surface
+    and is therefore out of scope for OpenAPI and AsyncAPI modeling. Memgraph
+    does expose a WebSocket log-monitoring channel (default 0.0.0.0:7444), but
+    it is a one-directional operational log stream (server -> client) rather
+    than a documented public event API with addressable channels/messages, so
+    no AsyncAPI document was authored. The only genuine HTTP surface is the
+    Enterprise metrics endpoint, modeled in openapi/memgraph-openapi.yml.
+findings:
+  summary: |
+    Memgraph is an open-source in-memory graph database whose principal and
+    intended programmatic interface is openCypher executed over the Bolt wire
+    protocol on TCP port 7687 (bolt:// or bolt+s://), accessed via standard
+    Neo4j-compatible drivers (Python, JavaScript, Java, Go, Rust, C#, PHP).
+    Bolt is a stateful, connection-oriented binary protocol; it is NOT a
+    REST/HTTP API and cannot be invoked with plain HTTP verbs. MAGE graph
+    algorithms and Memgraph Lab both ride this same Bolt interface (MAGE as
+    Cypher CALL procedures; Lab as a client UI). The only documented HTTP
+    surface is the Enterprise-only metrics endpoint (default 0.0.0.0:9091,
+    GET, OpenMetrics/Prometheus format). A WebSocket channel (default
+    0.0.0.0:7444, ws:// or wss://) streams real-time log messages.
+  transports:
+    - protocol: Bolt
+      scheme: bolt
+      baseURL: bolt://localhost:7687
+      documented: true
+      note: Primary interface. Cypher queries over the binary Bolt protocol via graph drivers. Not REST/HTTP. bolt+s:// for TLS.
+    - protocol: HTTP
+      scheme: http
+      baseURL: http://localhost:9091
+      documented: true
+      note: Enterprise-only metrics endpoint. GET returns OpenMetrics/Prometheus exposition; configurable via --metrics-address/--metrics-port.
+    - protocol: WebSocket
+      scheme: ws
+      baseURL: ws://localhost:7444
+      documented: true
+      note: Real-time log-monitoring stream (server -> client). Configurable via --monitoring-address/--monitoring-port; wss:// when Bolt TLS certs are set. Not a public REST/event API.
+    - protocol: REST
+      scheme: https
+      documented: false
+      note: Memgraph does not document a public REST/HTTP query API. There are no HTTP query endpoints for Cypher.
+  interfacesConfirmed:
+    - bolt://<host>:7687 (Cypher query interface; primary)
+    - bolt://<host>:7687 CALL <mage.procedure>(...) (MAGE algorithms as query modules)
+    - GET http://<host>:9091/metrics (Enterprise metrics, OpenMetrics/Prometheus)
+    - ws://<host>:7444 (real-time log monitoring stream)
+  notRest: |
+    No REST endpoints were fabricated. The Cypher/Bolt interface is a binary
+    wire protocol and is represented as a transport, not as OpenAPI paths. The
+    OpenAPI document models only the single genuine HTTP metrics GET.
+sources:
+  - url: https://memgraph.com/docs/querying
+    type: Documentation
+    note: Cypher query language executed over Bolt; no HTTP query endpoints.
+  - url: https://memgraph.com/docs/client-libraries
+    type: Documentation
+    note: Official drivers (Python/JS/Java/Go/Rust/C#/PHP) connect via bolt://host:7687.
+  - url: https://memgraph.com/docs/database-management/monitoring
+    type: Documentation
+    note: WebSocket log monitoring on default 0.0.0.0:7444 (ws/wss); Enterprise metrics HTTP on default 0.0.0.0:9091.
+  - url: https://memgraph.com/docs/configuration/server-stats
+    type: Documentation
+    note: Metrics HTTP endpoint serves OpenMetrics/Prometheus; Enterprise-only feature.
+  - url: https://github.com/memgraph/memgraph
+    type: GitHub
+    note: Open-source in-memory graph database; Cypher-compatible, built in C++.
+actions:
+  openapiPath: openapi/memgraph-openapi.yml
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    The primary interface is Cypher over Bolt (a binary wire protocol), so it
+    is documented as a transport rather than as OpenAPI/AsyncAPI operations. An
+    OpenAPI document was authored covering only the single genuine HTTP surface
+    (the Enterprise metrics GET). No AsyncAPI document was created because the
+    only streaming surface is a one-way operational log WebSocket, not a
+    documented public event API. No REST endpoints were invented.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,103 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Memgraph
+providerId: memgraph
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Graph Database
+- In-Memory
+- Cypher
+- Bolt
+- Real-Time
+- Plans
+description: >-
+  Memgraph ships as a free, open-source Community Edition under the Business Source
+  License, with no per-query or per-token charges - you self-host and pay only for
+  your own infrastructure. The Memgraph Enterprise Edition adds security, multi
+  tenancy, role-based access control, automatic failover, high availability, and the
+  HTTP metrics endpoint; it is sales-led and reported to start around $25,000/year
+  scaling by memory capacity. A fully-managed Memgraph Cloud (Beta) offering is also
+  available with a free trial. Because Enterprise and Cloud pricing is negotiated and
+  not fully published, these figures are not reconciled in this artifact.
+notes: >-
+  Verify current Community, Enterprise, and Cloud terms on the Memgraph pricing page
+  during reconciliation; Enterprise/Cloud pricing is sales-led and subject to change.
+sources:
+- https://memgraph.com/pricing
+- https://memgraph.com/docs
+- https://github.com/memgraph/memgraph
+plans:
+- id: memgraph-community
+  name: Community Edition
+  type: free
+  description: >-
+    Free, open-source, self-hosted in-memory graph database with full Cypher/Bolt
+    support, MAGE algorithms, and ACID transactions. No license fee; you provide the
+    infrastructure.
+  entries:
+  - label: Community Edition License
+    name: community
+    type: free
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (open source, self-hosted)
+    userMultiplied: false
+  elements:
+  - name: Bolt/Cypher Query Interface
+  - name: MAGE Algorithms
+  - name: Memgraph Lab
+  - name: WebSocket Log Monitoring
+- id: memgraph-enterprise
+  name: Enterprise Edition
+  type: enterprise
+  description: >-
+    Self-hosted edition adding authentication/authorization, role-based and label
+    based access control, multi-tenancy, high availability and automatic failover,
+    audit logging, and the Prometheus-style HTTP metrics endpoint, plus dedicated
+    support. Sales-led; reported to start near $25,000/year scaling by memory.
+  entries:
+  - label: Enterprise License
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (reported from ~$25,000/year by memory tier)
+    userMultiplied: false
+  elements:
+  - name: Security and RBAC
+  - name: Multi-Tenancy
+  - name: High Availability and Failover
+  - name: HTTP Metrics Endpoint
+  - name: Dedicated Support
+- id: memgraph-cloud
+  name: Memgraph Cloud (Beta)
+  type: enterprise
+  description: >-
+    Fully-managed, hosted Memgraph offered in Beta with a free trial. Pricing is
+    deployment- and capacity-based and negotiated; not fully published.
+  entries:
+  - label: Managed Cloud
+    name: cloud
+    type: usage
+    metric: capacity
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free trial; contact sales for managed pricing
+    userMultiplied: false
+  elements:
+  - name: Managed Hosting
+  - name: Free Trial
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

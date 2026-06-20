@@ -1,0 +1,30 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Memgraph",
+    "version": "1.0",
+    "description": "Memgraph's primary interface is Cypher over the Bolt wire protocol (bolt://host:7687) via graph drivers - it is NOT a REST API and cannot be exercised over HTTP. This collection covers only Memgraph's single genuine HTTP surface: the Enterprise metrics endpoint."
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scrape Memgraph metrics (Enterprise)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:9091/metrics"
+          },
+          "docs": "Returns Memgraph system, query, transaction, and memory metrics in OpenMetrics/Prometheus exposition format. Enterprise-only; the metrics server (default 0.0.0.0:9091) must be enabled. Note: the main Memgraph query interface is Cypher over Bolt on port 7687, not HTTP."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
