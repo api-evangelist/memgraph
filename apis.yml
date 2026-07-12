@@ -105,6 +105,8 @@ apis:
     application itself connects to Memgraph over the Bolt protocol on port 7687; it is
     a client UI, not a public REST API.
 common:
+- type: DomainSecurity
+  url: security/memgraph-domain-security.yml
 - type: GitHubOrganization
   url: https://github.com/memgraph
 - type: LinkedIn
@@ -119,6 +121,8 @@ common:
   url: rate-limits/memgraph-rate-limits.yml
 - type: FinOps
   url: finops/memgraph-finops.yml
+- url: https://memgraph.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
