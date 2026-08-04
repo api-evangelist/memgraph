@@ -1,0 +1,14 @@
+{
+  "provider": "memgraph",
+  "sources": [
+    "memgraph-monitoring-api-openapi.yml"
+  ],
+  "outputs": [
+    "memgraph-monitoring-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,52 @@
+openapi: 3.0.1
+info:
+  title: Memgraph HTTP Metrics API
+  description: >-
+    IMPORTANT: Memgraph's primary interface is NOT a REST API. Applications query
+    Memgraph by sending openCypher statements over the binary Bolt wire protocol on
+    TCP port 7687 (bolt:// or bolt+s://) using standard Neo4j-compatible drivers
+    (Python, JavaScript, Java, Go, Rust, C#, PHP). Bolt is a stateful, connection
+    oriented protocol and cannot be modeled as HTTP/REST operations, so it is not
+    represented in this OpenAPI document.
+
+
+    The only genuine HTTP surface Memgraph exposes is its Enterprise-only metrics
+    endpoint, which serves system, query, transaction, and memory statistics in
+    OpenMetrics/Prometheus exposition format via a single GET. That endpoint is the
+    sole operation modeled below. Memgraph also exposes a WebSocket log-monitoring
+    channel (default 0.0.0.0:7444), which is a streaming transport and is documented
+    in review.yml rather than here.
+  contact:
+    name: Memgraph
+    url: https://memgraph.com
+  license:
+    name: Business Source License 1.1 (Community) / Memgraph Enterprise
+    url: https://github.com/memgraph/memgraph/blob/master/licenses/BSL.txt
+  version: '1.0'
+servers:
+  - url: http://localhost:9091
+    description: >-
+      Default Memgraph metrics HTTP server (Enterprise Edition). Address and port are
+      configurable with the --metrics-address and --metrics-port flags.
+paths:
+  /metrics:
+    get:
+      operationId: getMetrics
+      tags:
+        - Monitoring
+      summary: Scrape Memgraph system and query metrics.
+      description: >-
+        Returns Memgraph runtime metrics (transactions, query latencies, query types,
+        snapshot recovery latencies, triggers, TTL, Bolt messages, indexes, streams,
+        memory, operators, and sessions) in OpenMetrics/Prometheus exposition format.
+        Enterprise-only feature; the metrics server must be enabled. Designed to be
+        scraped by Prometheus or any OpenMetrics-compatible client.
+      responses:
+        '200':
+          description: Metrics in OpenMetrics/Prometheus text exposition format.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Metrics server not enabled or endpoint not found.
