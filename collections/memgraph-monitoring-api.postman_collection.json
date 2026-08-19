@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "b5cd9eed-6149-4c63-8000-b94b88b3414f",
+      "name": "Monitoring",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "beeefc97-cd4a-473e-91e7-3ed41e00705e",
+          "name": "Scrape Memgraph system and query metrics.",
+          "request": {
+            "name": "Scrape Memgraph system and query metrics.",
+            "description": {
+              "content": "Returns Memgraph runtime metrics (transactions, query latencies, query types, snapshot recovery latencies, triggers, TTL, Bolt messages, indexes, streams, memory, operators, and sessions) in OpenMetrics/Prometheus exposition format. Enterprise-only feature; the metrics server must be enabled. Designed to be scraped by Prometheus or any OpenMetrics-compatible client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "183c1cd8-c43a-4f65-a161-c4557319cdd8",
+              "name": "Metrics in OpenMetrics/Prometheus text exposition format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da270b23-4ea6-4fc6-a2be-431304fdb203",
+              "name": "Metrics server not enabled or endpoint not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:9091",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2ac84546-599b-4af9-ac7d-954177ed900d",
+    "name": "Memgraph HTTP Metrics Monitoring API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "IMPORTANT: Memgraph's primary interface is NOT a REST API. Applications query Memgraph by sending openCypher statements over the binary Bolt wire protocol on TCP port 7687 (bolt:// or bolt+s://) using standard Neo4j-compatible drivers (Python, JavaScript, Java, Go, Rust, C#, PHP). Bolt is a stateful, connection oriented protocol and cannot be modeled as HTTP/REST operations, so it is not represented in this OpenAPI document.\n\nThe only genuine HTTP surface Memgraph exposes is its Enterprise-only metrics endpoint, which serves system, query, transaction, and memory statistics in OpenMetrics/Prometheus exposition format via a single GET. That endpoint is the sole operation modeled below. Memgraph also exposes a WebSocket log-monitoring channel (default 0.0.0.0:7444), which is a streaming transport and is documented in review.yml rather than here.\n\nContact Support:\n Name: Memgraph",
+      "type": "text/plain"
+    }
+  }
+}
