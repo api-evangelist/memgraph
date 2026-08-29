@@ -8,6 +8,18 @@ description: Memgraph is an open-source, high-performance in-memory graph databa
   drivers - it is not a REST API. Memgraph also ships MAGE graph algorithms, the
   GQLAlchemy Python OGM, the Memgraph Lab visual interface, a WebSocket log-monitoring
   channel, and an Enterprise Prometheus-style metrics HTTP endpoint.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
