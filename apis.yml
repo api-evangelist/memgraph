@@ -9,16 +9,21 @@ description: Memgraph is an open-source, high-performance in-memory graph databa
   GQLAlchemy Python OGM, the Memgraph Lab visual interface, a WebSocket log-monitoring
   channel, and an Enterprise Prometheus-style metrics HTTP endpoint.
 deliveryModel:
-  model: saas
-  open_source: false
+  model: unknown
+  license_evidence:
+    repo: memgraph/memgraph
+    spdx: NOASSERTION
+    stars: 4581
+  open_source: unknown
   commercial: true
   callable_host: false
-  label: Hosted service · you call their endpoint
-  confidence: medium
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-unlicensed
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -64,6 +69,7 @@ apis:
     modules - traditional, dynamic, and ML-driven - invoked as Cypher procedures (CALL ...) over the same
     Bolt interface. Not a standalone HTTP API.
 - aid: memgraph:memgraph-lab
+  x-published: false
   name: Memgraph Lab
   tags:
   - Lab
