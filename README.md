@@ -1,4 +1,4 @@
-# Memgraph (memgraph)
+# Memgraph
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,121 +66,117 @@
 
 Memgraph is an open-source, high-performance in-memory graph database built in C++ for real-time graph analytics, GraphRAG, and agentic AI. Its primary interface is Cypher executed over the Bolt wire protocol (TCP port 7687) via standard graph drivers - it is not a REST API. Memgraph also ships MAGE graph algorithms, the GQLAlchemy Python OGM, the Memgraph Lab visual interface, a WebSocket log-monitoring channel, and an Enterprise Prometheus-style metrics HTTP endpoint.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/memgraph/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/memgraph/refs/heads/main/apis.yml)
+**Areas:** Graph Database · In-Memory · Cypher · Bolt · Real-Time
 
-## Tags
+## Memgraph on APIs.io
 
-- Graph Database
-- In-Memory
-- Cypher
-- Bolt
-- Real-Time
+Everything profiled for Memgraph is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/memgraph/](https://apis.io/providers/memgraph/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Memgraph MAGE Algorithms](https://apis.io/apis/memgraph/memgraph-mage-algorithms/) — MAGE (Memgraph Advanced Graph Extensions) is an open-source library of graph algorithms and query modules - traditional, dynamic, and ML-driven - invoked as…
+- [Memgraph Lab](https://apis.io/apis/memgraph/memgraph-lab/) — Memgraph Lab is a lightweight visual interface for writing Cypher queries, visualizing graph results, importing data, and inspecting query modules. The Lab…
+- [Memgraph Monitoring API](https://apis.io/apis/memgraph/memgraph-monitoring-api/) — The Monitoring API from Memgraph — 1 operation(s) for monitoring.
 
-## APIs
+### Published properties
 
-### Memgraph Bolt/Cypher Query Interface
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The primary programmatic interface to Memgraph. Clients send openCypher queries over the binary Bolt protocol on TCP port 7687 (bolt:// or bolt+s://) using official Neo4j-compatible drivers for Python, JavaScript, Java, Go, Rust, C#, and PHP. This is a stateful wire protocol, not a REST/HTTP API; there are no HTTP query endpoints.
+#### Agentic access (1)
 
-- **Human URL:** [https://memgraph.com/docs/querying](https://memgraph.com/docs/querying)
-- **Base URL:** `bolt://localhost:7687`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Memgraph Agentic Access](https://apis.io/agentic-access/memgraph/memgraph-agentic-access/)
 
-- Cypher
-- Bolt
-- Query
-- Graph
+#### Collections (2)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://memgraph.com/docs/client-libraries)
-- [API Reference](https://memgraph.com/docs/querying)
-- [OpenAPI](openapi/memgraph-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [GitHub](https://github.com/memgraph/memgraph)
-- [Postman Collection](collections/memgraph.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/memgraph.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Memgraph](https://apis.io/collections/memgraph/open-memgraph/)
+- [Memgraph HTTP Metrics Monitoring API](https://apis.io/collections/memgraph/open-memgraph-monitoring-api/)
 
-### Memgraph MAGE Algorithms
+#### Security (1)
 
-MAGE (Memgraph Advanced Graph Extensions) is an open-source library of graph algorithms and query modules - traditional, dynamic, and ML-driven - invoked as Cypher procedures (CALL ...) over the same Bolt interface. Not a standalone HTTP API.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://memgraph.com/docs/advanced-algorithms](https://memgraph.com/docs/advanced-algorithms)
-- **Base URL:** `bolt://localhost:7687`
+- [Memgraph Domain Security](https://apis.io/security/memgraph/memgraph-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- MAGE
-- Algorithms
-- Query Modules
+Published plans, tiers and prices.
 
-#### Properties
+- [Memgraph Plans Pricing](https://apis.io/plans/memgraph/memgraph-plans-pricing/)
 
-- [Documentation](https://memgraph.com/docs/advanced-algorithms)
-- [API Reference](https://memgraph.com/docs/advanced-algorithms/available-algorithms)
-- [GitHub](https://github.com/memgraph/mage)
-- [Postman Collection](collections/memgraph.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/memgraph.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Memgraph Monitoring and Metrics
+Published request limits.
 
-Two operational surfaces. A WebSocket log channel (ws:// or wss:// on default 0.0.0.0:7444) streams real-time log messages to connected clients. An Enterprise-only metrics HTTP endpoint (default 0.0.0.0:9091) exposes system, query, transaction, and memory metrics in OpenMetrics/Prometheus format via GET.
+- [Memgraph Rate Limits](https://apis.io/rate-limits/memgraph/memgraph-rate-limits/)
 
-- **Human URL:** [https://memgraph.com/docs/database-management/monitoring](https://memgraph.com/docs/database-management/monitoring)
-- **Base URL:** `http://localhost:9091`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Monitoring
-- Metrics
-- Prometheus
-- WebSocket
+- [Memgraph Finops](https://apis.io/finops/memgraph/memgraph-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://memgraph.com/docs/database-management/monitoring)
-- [API Reference](https://memgraph.com/docs/configuration/server-stats)
-- [OpenAPI](openapi/memgraph-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [GitHub](https://github.com/memgraph/memgraph)
-- [Postman Collection](collections/memgraph.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/memgraph.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Memgraph Lab
-
-Memgraph Lab is a lightweight visual interface for writing Cypher queries, visualizing graph results, importing data, and inspecting query modules. The Lab application itself connects to Memgraph over the Bolt protocol on port 7687; it is a client UI, not a public REST API.
-
-- **Human URL:** [https://memgraph.com/docs/data-visualization](https://memgraph.com/docs/data-visualization)
-- **Base URL:** `bolt://localhost:7687`
-
-#### Tags
-
-- Lab
-- Visualization
-- UI
-
-#### Properties
-
-- [Documentation](https://memgraph.com/docs/data-visualization)
-- [GitHub](https://github.com/memgraph/lab)
-- [Postman Collection](collections/memgraph.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/memgraph.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/memgraph)
-- [LinkedIn](https://www.linkedin.com/company/memgraph)
 - [Website](https://memgraph.com)
 - [Documentation](https://memgraph.com/docs)
-- [Plans](plans/memgraph-plans-pricing.yml)
-- [Rate Limits](rate-limits/memgraph-rate-limits.yml)
-- [Fin Ops](finops/memgraph-finops.yml)
+- [Blog](https://memgraph.com/blog)
+- [GitHub](https://github.com/memgraph)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 21.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 41.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/memgraph/](https://apis.io/providers/memgraph/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Memgraph: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/memgraph/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
